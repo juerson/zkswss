@@ -1,0 +1,13 @@
+[package]
+name = "zks-proto"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "ZKS protocol definitions and shared types"
+
+[dependencies]
+thiserror = "2.0"
+serde = { workspace = true }
+serde_json = { workspace = true }
+bytes = { workspace = true }

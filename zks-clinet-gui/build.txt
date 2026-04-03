@@ -1,0 +1,68 @@
+# ZKSWorkerGUI 客户端构建命令参考
+
+## 开发环境构建
+
+# 标准构建
+dotnet build
+
+# 指定项目构建
+dotnet build ZKSWorkerGUI/ZKSWorkerGUI.csproj
+
+# 快速构建（最少输出）
+dotnet build ZKSWorkerGUI/ZKSWorkerGUI.csproj --verbosity minimal
+
+# 快速构建（跳过恢复）
+dotnet build --verbosity minimal --no-restore
+dotnet build ZKSWorkerGUI/ZKSWorkerGUI.csproj --verbosity minimal --no-restore
+
+## 生产环境发布
+
+# 基础发布版本
+dotnet publish -c Release
+
+# 需要系统安装.NET（体积小）
+dotnet publish -c Release -r win-x64 --no-self-contained -p:PublishSingleFile=true
+
+# 不需要系统.NET（免安装）
+dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
+
+## 环境信息查看
+
+# 查看运行时.Net版本
+dotnet --list-runtimes
+
+# 查看SDK版本
+dotnet --list-sdks
+dotnet --version
+
+# 下载.NET 10.0 Desktop Runtime
+https://dotnet.microsoft.com/en-us/download/dotnet/10.0
+https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-10.0.2-windows-x64-installer
+
+----------------------------------------------------------------------
+
+清理之前的编译输出：dotnet clean
+
+## .NET 8.0 兼容性
+
+如果需要.NET 8.0+环境运行,按照下面步骤简单修改:
+
+1. 修改ECHWorkersGUI\ECHWorkersGUI.csproj：
+    <TargetFramework>net8.0-windows</TargetFramework>
+
+2. 注释掉ECHWorkersGUI\App.Designer.cs：
+    process1.StartInfo.CreateNewProcessGroup = false;
+
+3. 然后执行下面命令：
+   # 需要系统安装.NET 8.0（体积小）
+     dotnet publish -c Release -r win-x64 --no-self-contained -p:PublishSingleFile=true
+   # 不需要系统.NET 8.0（免安装）
+     dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
+
+4. 要外部依赖的发布包，需要下载依赖 .NET Desktop Runtime 8.0.xx: 
+https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.23-windows-x64-installer?cid=getdotnetcore
+https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.23-windows-x64-installer
+
+
+问题：多开问题暂时没有解决，也不算大问题。

@@ -1,0 +1,48 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cloudflare Workers
+.wrangler/
+worker/pkg/
+package-lock.json
+
+# Build artifacts
+*.wasm
+*.d.ts
+
+# Environment
+.env
+.env.local
+.dev.vars
+
+# Logs
+*.log
+npm-debug.log*
+# Sensitive files (added per request)
+*.key
+*.pub
+tamarin-results/
+
+.github
+/doc/
+test_*
+*_test
+test
+package-lock.json
+package.json
+.vs
+*.user
+package-lock.json

@@ -1,0 +1,22 @@
+name = "zks-worker"
+main = "build/worker/shim.mjs"
+compatibility_date = "2024-01-01"
+
+[observability]
+enabled = false
+
+[build]
+command = "cargo install worker-build && worker-build --release"
+[env.dev]
+build = { command = "cargo install -q worker-build && worker-build --dev" }
+
+[[durable_objects.bindings]]
+name = "WORKER_SESSION"
+class_name = "WorkerSession"
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["WorkerSession"]
+
+[vars]
+AUTH_TOKEN = "2kWBzSkmVVkvv7wst8la"
+BACKUP_ADDRS = "152.32.181.246:44070" # 等价PROXYIP，会失效。
